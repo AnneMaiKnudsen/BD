@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sol over Brabrand</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --text: #1a1a18;
+      --muted: #6b6860;
+      --green-fill: #EAF3DE;
+      --green-text: #3B6D11;
+      --green-bar: #639922;
+      --amber-fill: #FAEEDA;
+      --amber-text: #854F0B;
+      --gray-fill: #f0ede6;
+      --gray-text: #5a5750;
+      --radius-card: 16px;
+      --radius-pill: 999px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+
+    .app { max-width: 640px; margin: 0 auto; }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+
+    .card {
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 1.1rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .card-big {
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .card-body {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+    }
+    .pill-green { background: var(--green-fill); color: var(--green-text); }
+    .pill-amber { background: var(--amber-fill); color: var(--amber-text); }
+    .pill-gray  { background: var(--gray-fill);  color: var(--gray-text);  }
+
+    .bar-track {
+      background: var(--gray-fill);
+      border-radius: 4px;
+      height: 8px;
+      overflow: hidden;
+      margin: 7px 0 4px;
+    }
+    .bar-fill { height: 100%; border-radius: 4px; background: var(--green-bar); }
+
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: Arial, sans-serif;
+      font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .av-green { background: var(--green-fill); color: var(--green-text); }
+    .av-teal  { background: #E1F5EE; color: #0F6E56; }
+
+    .person-row { display: flex; gap: 10px; align-items: flex-start; }
+
+    .source { font-family: Arial, sans-serif; font-size: 11px; color: var(--muted); margin-top: 14px; }
+
+    @media (max-width: 500px) {
+      .grid2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;">
+        <div>
+  <div class="eyebrow">Energifællesskabet · Engdalsvej, Brabrand</div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div class="card-label">Lokal grøn strøm lige nu</div>
+    <div class="card-big" id="statusTekst">–</div>
+    <div class="card-body" id="statusBody">–</div>
+    <span class="pill" id="statusPill">–</span>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="person-row">
+        <div class="avatar av-green">A</div>
+        <div style="flex:1;">
+          <div style="font-size:15px;margin-bottom:2px;">Dine solceller</div>
+          <div class="card-body" style="margin-top:4px;">
+            Dine solceller bidrog til <strong style="color:var(--green-text);">23 grønne timer</strong> hos naboerne i dag.
+          </div>
+          <div style="font-family:Arial,sans-serif;font-size:12px;color:var(--muted);">Dine grønne timer i april: 61</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person-row">
+        <div class="avatar av-teal">M</div>
+        <div style="flex:1;">
+          <div style="font-size:15px;margin-bottom:2px;">Dit forbrug</div>
+          <div class="card-body" style="margin-top:4px;">
+            Bruger du strøm i det grønne vindue, tæller det som en grøn time.
+          </div>
+          <div style="font-family:Arial,sans-serif;font-size:12px;color:var(--muted);">Dine grønne timer i april: 14</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div style="font-size:16px;margin-bottom:4px;">Vejfest ved hallerne 🎉</div>
+    <div class="card-body">Fællesskabet samler grønne timer. Én time for hver gang en husstand bruger strøm mens solen skinner lokalt. Når vi når 1.000 er der fest.</div>
+    <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+    <div style="font-family:Arial,sans-serif;font-size:12px;color:var(--muted);">
+      847 / 1.000 grønne timer i april ·
+      <span style="color:var(--green-text);font-weight:600;">153 tilbage</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;">
+    <div style="font-size:16px;margin-bottom:4px;">Fællesskabet</div>
+    <div class="card-body">24 husstande på Engdalsvej er med. Nogle producerer, alle kan koordinere.</div>
+    <div class="bar-track" style="height:10px;">
+      <div class="bar-fill" style="width:68%"></div>
+    </div>
+    <div style="font-family:Arial,sans-serif;font-size:12px;color:var(--muted);margin-top:4px;">
+      24 / 35 husstande · <span style="color:var(--green-text);font-weight:600;">Er din nabo med?</span>
+    </div>
+  </div>
+
+  <div class="source" id="sourceNote">Henter soldata…</div>
+  <svg viewBox="0 0 400 120" width="100%" xmlns="http://www.w3.org/2000/svg" style="margin-top:12px;">
+    <rect width="400" height="120" fill="#f4f1ea"/>
+    <circle id="sol" cx="-20" cy="80" r="8" fill="#f5c842" opacity="0.9"/>
+    <rect x="0" y="90" width="400" height="30" fill="#c8d8a0"/>
+    <rect x="58" y="72" width="4" height="18" fill="#a0b870"/>
+    <ellipse cx="60" cy="68" rx="10" ry="12" fill="#a0b870"/>
+    <rect x="160" y="72" width="80" height="18" fill="#b8c890"/>
+    <polygon points="158,72 242,72 242,62 158,62" fill="#a0b870"/>
+    <line x1="168" y1="63" x2="168" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="178" y1="63" x2="178" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="188" y1="63" x2="188" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="198" y1="63" x2="198" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="208" y1="63" x2="208" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="218" y1="63" x2="218" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="228" y1="63" x2="228" y2="71" stroke="#7a9a50" stroke-width="1"/>
+    <line x1="163" y1="67" x2="241" y2="67" stroke="#7a9a50" stroke-width="1"/>
+    <rect x="318" y="75" width="4" height="15" fill="#a0b870"/>
+    <ellipse cx="320" cy="71" rx="8" ry="10" fill="#a0b870"/>
+  </svg>
+  <script>
+    const DAGSTART = 6, DAGSLUT = 20;
+    function solPos(h) {
+      const xPct = Math.max(0.05, Math.min(0.95, (h - DAGSTART) / (DAGSLUT - DAGSTART)));
+      const norm = (h - (DAGSTART + DAGSLUT) / 2) / ((DAGSLUT - DAGSTART) / 2);
+      return { x: xPct * 400, y: 82 - (1 - norm * norm) * 68 };
+    }
+    const nu = new Date();
+    const klNu = nu.getHours() + nu.getMinutes() / 60;
+    const maal = solPos(klNu);
+    const start = solPos(DAGSTART);
+    let prog = 0;
+    const sol = document.getElementById('sol');
+    function animer() {
+      prog = Math.min(1, prog + 0.008);
+      const ease = 1 - Math.pow(1 - prog, 3);
+      sol.setAttribute('cx', start.x + (maal.x - start.x) * ease);
+      sol.setAttribute('cy', start.y + (maal.y - start.y) * ease);
+      if (prog < 1) requestAnimationFrame(animer);
+    }
+    animer();
+  </script></div>
+
+<div>
+    <div style="font-family:Georgia,serif;font-size:16px;margin-bottom:4px;">Opslagstavle</div>
+    <div style="font-family:Arial,sans-serif;font-size:11px;color:var(--muted);margin-bottom:12px;">Del mad, ting og overskud på Engdalsvej</div>
+    <textarea id="nytOpslag" rows="3" placeholder="Jeg har æbler fra haven…" style="width:100%;font-family:Arial,sans-serif;font-size:13px;background:var(--gray-fill);border:none;border-radius:10px;padding:10px 12px;resize:none;outline:none;"></textarea>
+    <button onclick="postOpslag()" style="float:right;margin-top:6px;font-family:Arial,sans-serif;font-size:12px;font-weight:600;background:var(--green-bar);color:#fff;border:none;border-radius:999px;padding:6px 16px;cursor:pointer;">Post</button>
+    <div style="clear:both;margin-bottom:12px;"></div>
+    <div id="opslagListe">
+      <div style="background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow);">
+        <div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;margin-bottom:4px;">Lene · i går</div>
+        <div style="font-family:Arial,sans-serif;font-size:13px;">Hindbærsyltetøj fra haven 🍓 Kom forbi hvis I vil have et glas</div>
+      </div>
+      <div style="background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow);">
+        <div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;margin-bottom:4px;">Klaus · mandag</div>
+        <div style="font-family:Arial,sans-serif;font-size:13px;">Overskudszucchini — tag selv fra kassen ved indkørslen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const LAT = 56.14964850038168, LON = 10.117680086267438;
+
+  function fmtH(h) { return h + ':00'; }
+  function localH(iso) { return new Date(iso).getHours(); }
+
+  async function fetchSolar() {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=shortwave_radiation&timezone=Europe%2FCopenhagen&forecast_days=1`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }
+
+  function visStatus(tekst, body, pillTekst, pillKlasse) {
+    document.getElementById('statusTekst').textContent = tekst;
+    document.getElementById('statusBody').textContent  = body;
+    const pill = document.getElementById('statusPill');
+    pill.textContent = pillTekst;
+    pill.className   = pillKlasse;
+  }
+
+  function render(data) {
+    const rows   = data.hourly.time.map((t,i) => ({ h: localH(t), r: data.hourly.shortwave_radiation[i] || 0 }));
+    const kl     = new Date().getHours();
+    const dagMax = Math.max(...rows.map(r => r.r));
+
+    const graense   = Math.max(150, dagMax * 0.6);
+    const godeTimer = rows.filter(r => r.r >= graense);
+    const start     = godeTimer[0]?.h ?? null;
+    const slut      = godeTimer[godeTimer.length - 1]?.h ?? null;
+
+    const svagDag = dagMax < 100;
+    const iVindue = start !== null && kl >= start && kl <= slut;
+    const forbi   = slut !== null && kl > slut;
+
+    if (svagDag) {
+      visStatus('Svag sol hele dagen', 'Solen er svag i dag — sandsynligvis overskyet. Det gør ikke den store forskel hvornår du bruger strøm.', 'Ingen forskel i dag', 'pill pill-gray');
+    } else if (iVindue) {
+      visStatus('Godt tidspunkt nu', `Naboernes solceller producerer godt. Det grønne vindue varer til ca. kl. ${fmtH(slut)}. Sæt vasketøjet i gang.`, `Brug strøm nu — godt til kl. ${fmtH(slut)}`, 'pill pill-green');
+    } else if (!forbi && start !== null) {
+      const ventTimer = start - kl;
+      const ventTxt   = ventTimer === 1 ? '1 time' : ventTimer + ' timer';
+      visStatus(`Vent ca. ${ventTxt}`, `Solen er svag lige nu, men forecast viser et godt vindue fra kl. ${fmtH(start)} til kl. ${fmtH(slut)}. Udskyd dit forbrug og brug naboernes sol.`, `Godt fra kl. ${fmtH(start)}`, 'pill pill-amber');
+    } else {
+      visStatus('Bedste tidspunkt er forbi', `Dagens grønne vindue (kl. ${fmtH(start)}–${fmtH(slut)}) er slut. Brug strøm når det passer dig.`, 'Forbi for i dag', 'pill pill-gray');
+    }
+
+    const nu = new Date();
+    document.getElementById('sourceNote').textContent =
+      `Soldata: Open-Meteo · Brabrand · Opdateret kl. ${nu.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' })}${start ? ` · Grønt vindue: kl. ${fmtH(start)}–${fmtH(slut)}` : ''}`;
+  }
+
+  fetchSolar().then(render).catch(() => {
+    visStatus('Data ikke tilgængelig', 'Solforecastet kunne ikke hentes. Prøv igen om lidt.', 'Fejl', 'pill pill-gray');
+    document.getElementById('sourceNote').textContent = 'Fejl ved hentning af soldata.';
+  });
+
+  function postOpslag() {
+  const ta = document.getElementById('nytOpslag');
+  const tekst = ta.value.trim();
+  if (!tekst) return;
+  const nu = new Date();
+  const tid = nu.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit' });
+  const el = document.createElement('div');
+  el.style.cssText = 'background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow);';
+  el.innerHTML = `<div style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;margin-bottom:4px;">Anne · kl. ${tid}</div><div style="font-family:Arial,sans-serif;font-size:13px;">${tekst.replace(/</g,'&lt;')}</div>`;
+  document.getElementById('opslagListe').insertBefore(el, document.getElementById('opslagListe').firstChild);
+  ta.value = '';
+}
+</script>
+</body>
+</html>
